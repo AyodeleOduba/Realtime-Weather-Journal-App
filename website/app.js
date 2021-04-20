@@ -7,8 +7,8 @@ const personalApiKey = '&appid=5beb43e13dc3fa8be428191e6e50a00c';
 
 //Get the date data
 let d = new Date();
-let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
-
+let newDate = d.getMonth()+1 + '.' + d.getDate() + '.' + d.getFullYear();
+console.log(newDate)
 // Event listener to add function to existing HTML DOM element
 document.getElementById('generate').addEventListener('click', performAction);
 
@@ -38,6 +38,7 @@ const getWeather = async (baseURL, userZip, personalApiKey) => {
   try {
     // UserData equals to the result of fetch function
     const userData = await res.json();
+    console.log(userData)
     return userData;
   } catch (error) {
     console.log("error", error);
@@ -76,10 +77,12 @@ const updateUI = async () => {
 
     // Update new date, temperature and user's feeling entry values
     document.getElementById('date').innerHTML = allData.date;
-    document.getElementById('temp').innerHTML = allData.temp;
+    // document.getElementById('temp').innerHTML = allData.temp
+    document.getElementById('temp').innerHTML = ((1.8*(Number(allData.temp) - 273)) + 32).toFixed(2);
     document.getElementById('content').innerHTML = allData.content;
   }
   catch (error) {
     console.log("error", error);
   }
+
 };
