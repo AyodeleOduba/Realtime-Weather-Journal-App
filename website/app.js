@@ -3,7 +3,7 @@ const form = document.querySelector('.appform');
 
 // Base URL and API Key for OpenWeatherMap API
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const personalApiKey = '&appid=5beb43e13dc3fa8be428191e6e50a00c';
+const personalApiKey = '&appid=5beb43e13dc3fa8be428191e6e50a00c&units=imperial';
 
 //Get the date data
 let d = new Date();
@@ -77,8 +77,8 @@ const updateUI = async () => {
 
     // Update new date, temperature and user's feeling entry values
     document.getElementById('date').innerHTML = allData.date;
-    // document.getElementById('temp').innerHTML = allData.temp
-    document.getElementById('temp').innerHTML = ((1.8*(Number(allData.temp) - 273)) + 32).toFixed(2);
+    document.getElementById('temp').innerHTML = allData.temp
+    //document.getElementById('temp').innerHTML = ((1.8*(Number(allData.temp) - 273)) + 32).toFixed(2);
     document.getElementById('content').innerHTML = allData.content;
   }
   catch (error) {
